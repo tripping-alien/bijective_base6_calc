@@ -3,30 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     let i18nData = {};
 
     // --- Client-Side Bijective Logic ---
-    const toBijective = (n) => {
-        try {
-            if (n <= 0) return "(N/A)";
-            const chars = "123456";
-            let result = '';
-            while (n > 0) {
-                result = chars[(n - 1) % 6] + result;
-                n = Math.floor((n - 1) / 6);
-            }
-            return result;
-        } catch (err) {
-            console.error("Error in toBijective:", err);
-            return "(Error)";
+// --- Client-Side Bijective Logic (BigInt Refactor) ---
+const toBijective = (n) => {
+    try {
+        // Ensure input is a BigInt (handles strings from UI inputs perfectly)
+        let num = typeof n === 'bigint' ? n : BigInt(n);
+        
+        if (num <= 0n) return "(N/A)";
+        const chars = "123456";
+        let result = '';
+        
+        while (num > 0n) {
+            // BigInt division naturally truncates decimals, acting like Math.floor()
+            let remainder = Number((num - 1n) % 6n); 
+            result = chars[remainder] + result;
+            num = (num - 1n) / 6n;
         }
-    };
+        return result;
+    } catch (err) {
+        console.error("Error in toBijective:", err);
+        return "(Error)";
+    }
+};
 
-    const fromBijective = (s) => {
-        if (!s || !/^[1-6]+$/.test(s)) throw new Error("Invalid bijective base-6 input.");
-        let n = 0;
-        for (let char of s) {
-            n = n * 6 + parseInt(char, 10);
-        }
-        return n;
-    };
+const fromBijective = (s) => {
+    if (!s || !/^[1-6]+$/.test(s)) throw new Error("Invalid bijective base-6 input.");
+    let n = 0n; // Start as BigInt
+    for (let char of s) {
+        // n = n * 6 + value
+        n = n * 6n + BigInt(char);
+    }
+    // Return as a string or BigInt so the JS engine doesn't round it back down
+    return n.toString(); 
+};
 
     // --- Internationalization (i18n) Logic ---
     const supportedLangs = {
