@@ -26,7 +26,7 @@ def to_bijective_base6(n: int) -> str:
 
 @app.get("/")
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request, "index.html")
 
 @app.get("/robots.txt", response_class=PlainTextResponse)
 def robots():
