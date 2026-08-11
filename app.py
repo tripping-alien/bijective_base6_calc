@@ -1,7 +1,7 @@
 
 import uvicorn
 import os
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -65,10 +65,14 @@ def sitemap():
 
 @app.get("/locales/{lang}.json")
 async def get_locale(lang: str):
+    # Validate language code to prevent path traversal
+    if not lang.replace("-", "").isalnum():
+        raise HTTPException(status_code=400, detail="Invalid language format")
+        
     file_path = os.path.join("locales", f"{lang}.json")
     if os.path.exists(file_path):
         return FileResponse(file_path)
-    return {"error": "Language not found"}, 404
+    raise HTTPException(status_code=404, detail="Language not found")
 
 @app.get("/get-tables")
 async def get_tables():

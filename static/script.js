@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateSeoLangTags(currentLang) {
         // Remove old hreflang tags
-        document.querySelectorAll('link[rel="alternate"]').forEach(el => el.remove());
+        document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
         
         const head = document.head;
         const baseUrl = window.location.origin + window.location.pathname;
@@ -118,8 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lastTabId = localStorage.getItem('lastActiveTab');
         if (lastTabId) {
-            const lastTab = document.querySelector(`button[data-bs-target="${lastTabId}"]`);
-            if (lastTab) new bootstrap.Tab(lastTab).show();
+            try {
+                // Ensure lastTabId is properly quoted and doesn't break the selector
+                const safeLastTabId = lastTabId.replace(/"/g, '\\"');
+                const lastTab = document.querySelector(`button[data-bs-target="${safeLastTabId}"]`);
+                if (lastTab) new bootstrap.Tab(lastTab).show();
+            } catch (err) {
+                console.warn("Invalid tab ID in localStorage:", err);
+            }
         }
     }
 
@@ -228,8 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     calculateAllBtn.click();
                 }
             };
-            if (num1Input) num1Input.addEventListener('keypress', triggerCalculate);
-            if (num2Input) num2Input.addEventListener('keypress', triggerCalculate);
+            if (num1Input) num1Input.addEventListener('keydown', triggerCalculate);
+            if (num2Input) num2Input.addEventListener('keydown', triggerCalculate);
         }
 
         function displayAllOpsResults(num1, num2, data) {
@@ -334,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             applyTranslations(i18nData);
             document.getElementById('quiz-submit')?.addEventListener('click', checkAnswer);
-            document.getElementById('quiz-answer')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkAnswer(); });
+            document.getElementById('quiz-answer')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
         };
 
         const checkAnswer = () => {
