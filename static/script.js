@@ -213,10 +213,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch (e) {
                     console.warn("Calculator error:", e);
                     if (errorDisplay) errorDisplay.textContent = `${i18nData.errorGeneric || 'Error:'} ${e.message}`;
-                    resultArea?.classList.add('visible');
+                    if (resultArea) {
+                        resultArea.style.display = 'block';
+                        resultArea.classList.add('visible');
+                    }
                     if (opsResultsGrid) opsResultsGrid.innerHTML = '';
                 }
             });
+
+            // Allow hitting Enter to trigger calculation
+            const triggerCalculate = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    calculateAllBtn.click();
+                }
+            };
+            if (num1Input) num1Input.addEventListener('keypress', triggerCalculate);
+            if (num2Input) num2Input.addEventListener('keypress', triggerCalculate);
         }
 
         function displayAllOpsResults(num1, num2, data) {
