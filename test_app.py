@@ -58,12 +58,12 @@ def test_seo_endpoints():
     robots_res = client.get("/robots.txt")
     assert robots_res.status_code == 200
     assert "User-agent:" in robots_res.text
-    assert "https://base6.art/sitemap.xml" in robots_res.text
+    assert "https://tripping-alien.github.io/bijective_base6_calc/sitemap.xml" in robots_res.text
 
     sitemap_res = client.get("/sitemap.xml")
     assert sitemap_res.status_code == 200
     assert "<urlset" in sitemap_res.text
-    assert "https://base6.art/" in sitemap_res.text
+    assert "https://tripping-alien.github.io/bijective_base6_calc/" in sitemap_res.text
 
     manifest_res = client.get("/site.webmanifest")
     assert manifest_res.status_code == 200

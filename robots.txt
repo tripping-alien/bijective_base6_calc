@@ -1,11 +1,8 @@
 # Robots.txt for Bijective Base-6 Calculator & Explorer
-# https://base6.art/
+# https://tripping-alien.github.io/bijective_base6_calc/
 
 User-agent: *
 Allow: /
 
 # Sitemap Index
-Sitemap: https://base6.art/sitemap.xml
-
-# Mirror host
-Host: https://base6.art
+Sitemap: https://tripping-alien.github.io/bijective_base6_calc/sitemap.xml
