@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateSeoLangTags(currentLang) {
         document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+        if (!window.location.protocol.startsWith('http')) return;
         const head = document.head;
         const baseUrl = window.location.origin + window.location.pathname;
 

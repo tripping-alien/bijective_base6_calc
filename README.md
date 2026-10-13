@@ -1,12 +1,11 @@
 # Bijective Base-6 Calculator & Explorer
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://base6.art)
-[![Framework](https://img.shields.io/badge/Framework-FastAPI-green?style=flat-square)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/tripping-alien/bijective_base6_calc/blob/main/LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://tripping-alien.github.io/bijective_base6_calc/)
+[![Live Demo](https://img.shields.io/badge/Custom_Domain-base6.art-6366f1?style=for-the-badge)](https://base6.art)
+[![Architecture](https://img.shields.io/badge/Architecture-100%25_Client--Side-blue?style=flat-square)](https://github.com/tripping-alien/bijective_base6_calc)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-An interactive web app for exploring the **bijective base-6 number system**—a system with no zero. This educational tool features a hands-on calculator, a live number system converter, detailed explanations, and a configurable practice mode, all presented in a clean, Nord-inspired dark theme.
-Dive into the fascinating world of zero-less mathematics with this interactive web application dedicated to the **bijective base-6 number system**. More than just a calculator, this educational tool provides in-depth explanations, a configurable practice mode, and full support for 9 languages. Explore a number system used in modern computing, from spreadsheet columns to URL shorteners, all within a polished, Nord-inspired interface.
+An interactive web application for exploring the **bijective base-6 number system**—a positional numeral system with **no zero**, using digits `1, 2, 3, 4, 5, 6`. Designed for engineers, students, and math enthusiasts, this zero-backend educational tool features an interactive calculator, a real-time number system converter, comprehensive algorithmic explanations, reference lookup tables, and a configurable practice mode with full internationalization across **8 languages**.
 
 ---
 
@@ -18,7 +17,8 @@ Dive into the fascinating world of zero-less mathematics with this interactive w
 
 - [Features](#-features)
 - [What is Bijective Base-6?](#-what-is-bijective-base-6)
-- [Tech Stack & Rationale](#-tech-stack--rationale)
+- [Tech Stack & Architecture](#-tech-stack--architecture)
+- [Hosting on GitHub Pages](#-hosting-on-github-pages)
 - [Running Locally](#-running-locally)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -56,6 +56,21 @@ Counting proceeds like an odometer that can't show zero. After `6`, the next num
 | **Zero Backend Required** | Operates entirely in the browser—deployable to GitHub Pages, Cloudflare, Netlify, or opened directly as `index.html`. |
 | **Pre-Bundled i18n Engine** | Instant language switching across 8 languages with zero network latency (`static/locales-data.js`). |
 | **Python / FastAPI (Optional)** | Included in `app.py` as an optional local dev server and API suite with automated `pytest` verification. |
+
+## 🌐 Hosting on GitHub Pages
+
+This repository is pre-configured for seamless deployment to **GitHub Pages**:
+
+1. **Automatic Deployment (Recommended)**:
+   - A GitHub Actions workflow is included at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+   - In your GitHub repository, navigate to **Settings > Pages**.
+   - Under **Build and deployment > Source**, choose **GitHub Actions**.
+   - Every push to the `main` branch will automatically deploy the site.
+
+2. **Branch Deployment (Alternative)**:
+   - In **Settings > Pages**, set **Source** to `Deploy from a branch`.
+   - Select branch `main` and folder `/ (root)`.
+   - The `.nojekyll` file in the root ensures all static assets, styles, and locales are served directly without Jekyll filtering.
 
 ---
 
