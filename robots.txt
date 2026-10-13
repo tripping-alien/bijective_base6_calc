@@ -1,0 +1,9 @@
+# For all crawlers
+User-agent: *
+Disallow:
+
+# Yandex-specific directive for the main mirror
+Host: https://base6.art
+
+# Sitemap location
+Sitemap: https://base6.art/sitemap.xml
