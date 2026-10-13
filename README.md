@@ -47,60 +47,45 @@ Counting proceeds like an odometer that can't show zero. After `6`, the next num
 
 ---
 
-## 🛠️ Tech Stack & Rationale
+## 🛠️ Tech Stack & Architecture
 
 | Technology | Purpose |
 | :--- | :--- |
-| **Python** | The core language for all backend logic and data generation. |
-| **FastAPI** | A modern, high-performance web framework for building the API endpoints. |
-| **slowapi** | Provides rate limiting to protect API endpoints from abuse. |
-| **pytest** | Used for robust unit and integration testing of the backend logic. |
-| **Uvicorn** | The ASGI server that runs the FastAPI application. |
-| **HTML5 / CSS3** | For the structure and styling of the user interface, following modern best practices. |
-| **Vanilla JavaScript** | Powers all client-side interactivity, including theme switching, API calls, and dynamic content rendering. |
-| **Render** | The cloud platform used for free, continuous deployment directly from GitHub. |
+| **HTML5 & Vanilla CSS3** | Clean, semantic structure with a custom glassmorphic design system and fluid responsiveness. |
+| **Vanilla JavaScript (ES6+)** | 100% client-side computation for all bijective arithmetic, conversions, reference table generation, and practice mode. |
+| **Zero Backend Required** | Operates entirely in the browser—deployable to GitHub Pages, Cloudflare, Netlify, or opened directly as `index.html`. |
+| **Pre-Bundled i18n Engine** | Instant language switching across 8 languages with zero network latency (`static/locales-data.js`). |
+| **Python / FastAPI (Optional)** | Included in `app.py` as an optional local dev server and API suite with automated `pytest` verification. |
 
 ---
 
 ## 🚀 Running Locally
 
-To get a local copy up and running, follow these simple steps.
+### Option 1: Direct In-Browser (Zero Installation)
+Simply double-click `index.html` in your file explorer, or serve it with any static web server:
 
-### Prerequisites
+```sh
+# Using Python's built-in static server:
+python -m http.server 8000
 
-- Python 3.8+
-- An active internet connection to download packages
+# Or using Node's npx serve:
+npx serve .
+```
+Then open `http://localhost:8000` in your web browser.
 
-### Installation
+### Option 2: Using the Optional FastAPI Server
 
-1.  **Clone the repository:**
-    ```sh
-    git clone https://github.com/tripping-alien/bijective_base6_calc.git
-    ```
-2.  **Navigate to the project directory:**
-    ```sh
-    cd bijective_base6_calc
-    ```
-3.  **Create and activate a virtual environment:**
-    - **Windows:**
-      ```sh
-      python -m venv .venv
-      .\.venv\Scripts\Activate.ps1
-      ```
-    - **macOS / Linux:**
-      ```sh
-      python3 -m venv .venv
-      source .venv/bin/activate
-      ```
-4.  **Install the required packages:**
-    ```sh
-    pip install -r requirements.txt
-    ```
-5.  **Run the application:**
-    ```sh
-    uvicorn app:app --reload
-    ```
-6.  **Open your browser** and navigate to `http://127.0.0.1:8000`.
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/tripping-alien/bijective_base6_calc.git
+   cd bijective_base6_calc
+   ```
+2. **Install requirements & run:**
+   ```sh
+   pip install -r requirements.txt
+   uvicorn app:app --reload
+   ```
+3. Open `http://127.0.0.1:8000`.
 
 ---
 
