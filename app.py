@@ -1,22 +1,26 @@
-
 import uvicorn
 import os
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse, Response
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
 from starlette.responses import PlainTextResponse
 from datetime import date
 
-app = FastAPI()
+app = FastAPI(title="Bijective Base-6 Calculator & Explorer")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/assets", StaticFiles(directory="assets"), name="assets")
-templates = Jinja2Templates(directory="templates")
+# Static assets mounts
+if os.path.exists("static"):
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+if os.path.exists("assets"):
+    app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+if os.path.exists("locales"):
+    app.mount("/locales", StaticFiles(directory="locales"), name="locales")
 
-# This function is kept ONLY for generating the reference tables on the server.
+# Core Bijective Base-6 conversion logic
 def to_bijective_base6(n: int) -> str:
-    if n <= 0: return "(N/A)"
+    if n <= 0:
+        return "(N/A)"
     chars = "123456"
     result = []
     while n > 0:
@@ -24,51 +28,48 @@ def to_bijective_base6(n: int) -> str:
         result.append(chars[remainder])
     return "".join(reversed(result))
 
+def from_bijective_base6(s: str) -> int:
+    if not s or not all(c in "123456" for c in s.strip()):
+        raise ValueError("Invalid bijective base-6 input. Digits must be 1 to 6.")
+    n = 0
+    for c in s.strip():
+        n = n * 6 + int(c)
+    return n
+
+# Pydantic schemas for API testing compatibility
+class ConvertRequest(BaseModel):
+    decimal_value: int
+
+class CalculateRequest(BaseModel):
+    num1: str
+    num2: str
+
 @app.get("/")
-async def read_root(request: Request):
-    return templates.TemplateResponse(request, "index.html")
+async def read_root():
+    if os.path.exists("index.html"):
+        return FileResponse("index.html")
+    elif os.path.exists("templates/index.html"):
+        return FileResponse("templates/index.html")
+    return HTMLResponse("<h1>Bijective Base-6 Calculator</h1>")
 
 @app.get("/robots.txt", response_class=PlainTextResponse)
 def robots():
-    return """# For all crawlers
-User-agent: *
-Disallow:
-
-# Yandex-specific directive for the main mirror
-Host: https://base6.art
-
-# Sitemap location
-Sitemap: https://base6.art/sitemap.xml
-"""
+    if os.path.exists("robots.txt"):
+        with open("robots.txt", "r", encoding="utf-8") as f:
+            return f.read()
+    return "# For all crawlers\nUser-agent: *\nDisallow:\n"
 
 @app.get("/sitemap.xml")
 def sitemap():
-    base_url = "https://base6.art"
-    supported_langs = ["en", "ru", "de", "fr", "he", "ar", "zh", "ja"]  # Keep this in sync with your frontend
-    today = date.today().isoformat()
-    
-    xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
-    xml_content += '  <url>\n'
-    xml_content += f'    <loc>{base_url}/</loc>\n'
-    xml_content += f'    <lastmod>{today}</lastmod>\n'
-    xml_content += '    <changefreq>monthly</changefreq>\n'
-    xml_content += '    <priority>1.0</priority>\n'
-    # Add x-default for users whose language is not supported
-    xml_content += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{base_url}/?lang=en"/>\n'
-    for lang in supported_langs:
-        xml_content += f'    <xhtml:link rel="alternate" hreflang="{lang}" href="{base_url}/?lang={lang}"/>\n'
-    xml_content += '  </url>\n'
-    xml_content += '</urlset>'
-    
-    return Response(content=xml_content, media_type="application/xml")
+    if os.path.exists("sitemap.xml"):
+        with open("sitemap.xml", "r", encoding="utf-8") as f:
+            return Response(content=f.read(), media_type="application/xml")
+    return Response(content="<urlset></urlset>", media_type="application/xml")
 
 @app.get("/locales/{lang}.json")
 async def get_locale(lang: str):
-    # Validate language code to prevent path traversal
     if not lang.replace("-", "").isalnum():
         raise HTTPException(status_code=400, detail="Invalid language format")
-        
     file_path = os.path.join("locales", f"{lang}.json")
     if os.path.exists(file_path):
         return FileResponse(file_path)
@@ -81,6 +82,43 @@ async def get_tables():
     add_table = [[to_bijective_base6(i + j) for j in range(1, table_size + 1)] for i in range(1, table_size + 1)]
     mul_table = [[to_bijective_base6(i * j) for j in range(1, table_size + 1)] for i in range(1, table_size + 1)]
     return {"header": header, "addition": add_table, "multiplication": mul_table}
+
+@app.post("/convert")
+async def convert_endpoint(req: ConvertRequest):
+    val = req.decimal_value
+    return {
+        "decimal": val,
+        "bijective_base6": to_bijective_base6(val),
+        "binary": bin(val)[2:],
+        "hexadecimal": hex(val)[2:].upper()
+    }
+
+@app.post("/calculate-all")
+async def calculate_all_endpoint(req: CalculateRequest):
+    try:
+        n1 = from_bijective_base6(req.num1)
+        n2 = from_bijective_base6(req.num2)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    
+    add_dec = n1 + n2
+    sub_dec = n1 - n2
+    mul_dec = n1 * n2
+    div_dec = n1 // n2 if n2 != 0 else 0
+    rem_dec = n1 % n2 if n2 != 0 else 0
+
+    return {
+        "results": {
+            "addition": {"decimal": add_dec, "bijective": to_bijective_base6(add_dec)},
+            "subtraction": {"decimal": sub_dec, "bijective": to_bijective_base6(sub_dec) if sub_dec > 0 else "(N/A)"},
+            "multiplication": {"decimal": mul_dec, "bijective": to_bijective_base6(mul_dec)},
+            "division": {
+                "decimal": div_dec,
+                "remainder": rem_dec,
+                "bijective": to_bijective_base6(div_dec) if div_dec > 0 else "(N/A)"
+            }
+        }
+    }
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
