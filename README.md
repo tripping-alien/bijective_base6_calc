@@ -1,15 +1,14 @@
 # 🧮 Bijective Base-6 Calculator & Explorer
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-base6.art-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://base6.art)
-[![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://tripping-alien.github.io/bijective_base6_calc/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://tripping-alien.github.io/bijective_base6_calc/)
 [![CI Test Suite](https://img.shields.io/github/actions/workflow/status/tripping-alien/bijective_base6_calc/ci.yml?branch=main&style=for-the-badge&label=CI%20Build)](https://github.com/tripping-alien/bijective_base6_calc/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0%20(Pure%20Vanilla%20JS)-success?style=flat-square)](static/script.js)
 [![Languages](https://img.shields.io/badge/i18n-8%20Languages-blue?style=flat-square)](locales/)
 
-An interactive web application and educational explorer for the **bijective base-6 numeral system**—a non-standard positional number system with **no zero**, using digits `1, 2, 3, 4, 5, 6`. Designed for software engineers, mathematicians, educators, and computer science students, this client-side educational suite combines real-time radix conversion, arbitrary-precision bijective arithmetic, automated practice quizzes, lookup tables, and an algorithmic study guide.
+An interactive web application and educational explorer for the **bijective base-6 numeral system**—a non-standard positional number system with **no zero**, using the digits `1, 2, 3, 4, 5, 6`. Designed for software engineers, mathematicians, educators, and computer science students, this client-side educational suite provides real-time radix conversion, arbitrary-precision bijective arithmetic, automated practice quizzes, lookup tables, and an algorithmic study guide.
 
-Available live with custom domain routing at **[https://base6.art](https://base6.art)**.
+Hosted live on GitHub Pages at **[https://tripping-alien.github.io/bijective_base6_calc/](https://tripping-alien.github.io/bijective_base6_calc/)**.
 
 ---
 
@@ -40,21 +39,21 @@ Available live with custom domain routing at **[https://base6.art](https://base6
 
 ## 💡 What is Bijective Base-6?
 
-**Bijective base-6** (also known as *1-based senary* or *zero-free base-6*) is a positional numeral system that uses the base $k = 6$ and the digit set:
+**Bijective base-6** (also referred to as *1-based senary* or *zero-free base-6*) is a positional numeral system with base $k = 6$ and the digit set:
 
 $$\mathcal{D} = \{1, 2, 3, 4, 5, 6\}$$
 
-Unlike conventional number systems (such as decimal $0\dots9$ or standard senary $0\dots5$), bijective base-6 has **no zero digit**:
+Unlike conventional number systems (such as standard decimal $0\dots9$ or standard senary $0\dots5$), bijective base-6 has **no zero digit**:
 
 1. **No Zero Representation**: Every position in a number represents a strictly non-zero value between $1$ and $6$.
 2. **True Bijection ($1 \leftrightarrow 1$)**: There is an exact 1-to-1 bijection between all positive integers $\mathbb{N}^+$ and non-empty digit strings over $\{1, 2, 3, 4, 5, 6\}^*$.
-3. **No Leading Zero Ambiguities**: In standard base-6, $5$, $05$, and $005$ are identical numerical values, creating identifier parsing ambiguities. In bijective base-6, every representation is strictly unique.
+3. **No Leading Zero Ambiguities**: In standard base-6, values like $5$, $05$, and $005$ denote the same numerical quantity, introducing identifier parsing ambiguities. In bijective base-6, every representation is strictly unique.
 
 Counting proceeds like an odometer that cannot display zero:
 
 $$1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 5 \rightarrow 6 \rightarrow 11 \rightarrow 12 \dots 16 \rightarrow 21 \dots 66 \rightarrow 111$$
 
-This mechanism is identical to the way **spreadsheet columns** (such as Excel or Google Sheets) are labeled using letters: $A\dots Z$, then $AA\dots AZ$, rollover to $BA$, through $ZZ$, then $AAA$.
+This mechanism is identical to the way **spreadsheet columns** (such as Microsoft Excel or Google Sheets) are labeled with letters: $A\dots Z$, followed by $AA\dots AZ$, rollover to $BA$, through $ZZ$, then $AAA$.
 
 ---
 
@@ -135,13 +134,13 @@ $$\text{new\_carry} = \left\lfloor \frac{d_1 + d_2 + \text{carry} - 1}{6} \right
 
 ### 4. Bijective Column Subtraction
 
-When borrowing from an adjacent column in bijective base-6, you borrow a value of **6** (not 10). If digit $d_1 < d_2$, decrement the next column by 1 and compute $(d_1 + 6) - d_2$.
+When borrowing from an adjacent column in bijective base-6, borrow a value of **6** (rather than 10). If digit $d_1 < d_2$, decrement the next column by 1 and compute $(d_1 + 6) - d_2$.
 
 ---
 
 ## 🌐 Internationalization (8 Languages)
 
-The application includes full native translations with RTL (Right-to-Left) script support:
+The application includes complete native translations with RTL (Right-to-Left) script support:
 
 | Language | Code | Script Direction | Flag |
 | :--- | :---: | :---: | :---: |
@@ -154,7 +153,7 @@ The application includes full native translations with RTL (Right-to-Left) scrip
 | **中文** (Simplified Chinese) | `zh` | LTR | 🇨🇳 |
 | **日本語** (Japanese) | `ja` | LTR | 🇯🇵 |
 
-Language can be switched in real-time via the settings modal or loaded directly using the URL query parameter (e.g. `https://base6.art/?lang=ru` or `https://base6.art/?lang=de`).
+Language can be switched in real-time via the settings modal or loaded directly using the URL query parameter (e.g. `https://tripping-alien.github.io/bijective_base6_calc/?lang=ru` or `?lang=de`).
 
 ---
 
@@ -174,16 +173,16 @@ Language can be switched in real-time via the settings modal or loaded directly 
 This repository is pre-configured for automated deployment to **GitHub Pages**:
 
 1. In repository settings, navigate to **Settings > Pages**.
-2. Under **Build and deployment > Source**, select **GitHub Actions**.
-3. Pushes to `main` automatically trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) to deploy to [base6.art](https://base6.art).
-4. The root [`CNAME`](CNAME) and [`.nojekyll`](.nojekyll) files ensure HTTPS custom domain routing and unconstrained static file delivery.
+2. Under **Build and deployment > Source**, select **GitHub Actions** (or **Deploy from a branch** with branch `main` and folder `/ (root)`).
+3. Pushes to `main` automatically trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) to deploy to [GitHub Pages](https://tripping-alien.github.io/bijective_base6_calc/).
+4. The root [`.nojekyll`](.nojekyll) file ensures unconstrained static file delivery without Jekyll preprocessing.
 
 ---
 
 ## 🚀 Running Locally
 
 ### Option 1: Direct In-Browser (Zero Installation)
-Simply open `index.html` in your web browser, or run a local static server:
+Open `index.html` directly in your web browser, or run a local static server:
 
 ```bash
 # Using Python:
@@ -237,7 +236,7 @@ In decimal, after $9$ comes $10$. In standard base-6, after $5$ comes $10$. In b
 <details>
 <summary><strong>Where are bijective number systems used in practice?</strong></summary>
 
-The most famous real-world application of bijective numeration is **spreadsheet column naming** (bijective base-26 with digits `A` through `Z`). Other applications include bijective base-64 URL shorteners, unambiguous database primary keys, and algorithmic serializations where leading zeroes cause silent truncation errors.
+The most recognizable real-world application of bijective numeration is **spreadsheet column naming** (bijective base-26 with digits `A` through `Z`). Other applications include bijective base-64 URL shorteners, unambiguous database primary keys, and algorithmic serializations where leading zeroes cause silent truncation errors.
 </details>
 
 <details>
@@ -266,7 +265,7 @@ If you use or reference this project in academic research, educational material,
 @software{bijective_base6_calc,
   author = {tripping-alien},
   title = {Bijective Base-6 Calculator & Explorer},
-  url = {https://base6.art},
+  url = {https://tripping-alien.github.io/bijective_base6_calc/},
   year = {2026},
   note = {GitHub Repository: https://github.com/tripping-alien/bijective_base6_calc}
 }
