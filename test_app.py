@@ -52,3 +52,20 @@ def test_calculate_all_endpoint():
     data = response.json()
     assert data["results"]["addition"]["decimal"] == 14
     assert data["results"]["addition"]["bijective"] == "22"
+
+def test_seo_endpoints():
+    """Tests robots.txt, sitemap.xml, and site.webmanifest endpoints."""
+    robots_res = client.get("/robots.txt")
+    assert robots_res.status_code == 200
+    assert "User-agent:" in robots_res.text
+    assert "https://base6.art/sitemap.xml" in robots_res.text
+
+    sitemap_res = client.get("/sitemap.xml")
+    assert sitemap_res.status_code == 200
+    assert "<urlset" in sitemap_res.text
+    assert "https://base6.art/" in sitemap_res.text
+
+    manifest_res = client.get("/site.webmanifest")
+    assert manifest_res.status_code == 200
+    manifest_data = manifest_res.json()
+    assert manifest_data["name"] == "Bijective Base-6 Calculator & Explorer"

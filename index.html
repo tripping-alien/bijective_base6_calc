@@ -5,34 +5,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Primary SEO Meta Tags -->
     <title data-i18n="pageTitle">Bijective Base-6 Calculator & Explorer</title>
+    <meta name="title" content="Bijective Base-6 Calculator & Explorer">
     <meta name="description"
         content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero."
         data-i18n-content="pageDescription">
     <meta name="keywords"
-        content="bijective base-6, base 6, senary, bijective numeration, number system, no zero, calculator, converter, educational tool, math">
+        content="bijective base-6, base 6, senary, bijective numeration, number system, no zero, calculator, converter, educational tool, math, decimal to base 6, positional notation">
+    <meta name="author" content="tripping-alien">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
     <link rel="canonical" href="https://base6.art/">
+
+    <!-- Multilingual Hreflang Alternates (8 Languages + x-default) -->
+    <link rel="alternate" hreflang="x-default" href="https://base6.art/">
+    <link rel="alternate" hreflang="en" href="https://base6.art/">
+    <link rel="alternate" hreflang="ru" href="https://base6.art/?lang=ru">
+    <link rel="alternate" hreflang="de" href="https://base6.art/?lang=de">
+    <link rel="alternate" hreflang="fr" href="https://base6.art/?lang=fr">
+    <link rel="alternate" hreflang="he" href="https://base6.art/?lang=he">
+    <link rel="alternate" hreflang="ar" href="https://base6.art/?lang=ar">
+    <link rel="alternate" hreflang="zh" href="https://base6.art/?lang=zh">
+    <link rel="alternate" hreflang="ja" href="https://base6.art/?lang=ja">
+
+    <!-- Mobile & PWA Optimization -->
+    <meta name="application-name" content="Bijective Base-6 Calculator">
+    <meta name="apple-mobile-web-app-title" content="Base-6 Calc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+    <link rel="apple-touch-icon" href="https://base6.art/assets/screenshot.jpg">
 
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://base6.art/">
+    <meta property="og:site_name" content="Bijective Base-6 Calculator & Explorer">
     <meta property="og:title" content="Bijective Base-6 Calculator & Explorer" data-i18n-property="og:title">
     <meta property="og:description"
         content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero."
         data-i18n-property="og:description">
-    <meta property="og:image" content="assets/screenshot.jpg">
+    <meta property="og:image" content="https://base6.art/assets/screenshot.jpg">
+    <meta property="og:image:secure_url" content="https://base6.art/assets/screenshot.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1032">
+    <meta property="og:image:alt" content="Bijective Base-6 Calculator and Explorer live application preview">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="he_IL">
+    <meta property="og:locale:alternate" content="ar_SA">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="ja_JP">
 
+    <!-- Twitter Cards -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://base6.art/">
     <meta property="twitter:title" content="Bijective Base-6 Calculator & Explorer" data-i18n-property="twitter:title">
     <meta property="twitter:description"
         content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero."
         data-i18n-property="twitter:description">
-    <meta property="twitter:image" content="assets/screenshot.jpg">
-    <meta name="google-site-verification" content="Ulb9B2JDIPiWP4AE8p7vIGN-XJmKCsXVTb1HmCFKj2U" />
+    <meta property="twitter:image" content="https://base6.art/assets/screenshot.jpg">
+    <meta property="twitter:image:alt" content="Bijective Base-6 Calculator and Explorer live application preview">
+
+    <!-- Search Engine Verifications -->
+    <meta name="google-site-verification" content="Ulb9B2JDIPiWP4AE8p7vIGN-XJmKCsXVTb1HmCFKj2U">
+
+    <!-- Performance Preconnect Hints -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Schema.org Structured Data (JSON-LD) for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://base6.art/#webapp",
+          "name": "Bijective Base-6 Calculator & Explorer",
+          "url": "https://base6.art/",
+          "description": "An interactive educational tool and mathematical calculator to explore the bijective base-6 (senary) number system with no zero, using digits 1-6.",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "tripping-alien",
+            "url": "https://github.com/tripping-alien"
+          },
+          "image": "https://base6.art/assets/screenshot.jpg",
+          "screenshot": "https://base6.art/assets/screenshot.jpg",
+          "inLanguage": ["en", "ru", "de", "fr", "he", "ar", "zh", "ja"],
+          "featureList": [
+            "Bijective base-6 arithmetic (+, -, ×, ÷)",
+            "Real-time decimal to bijective senary converter",
+            "24x24 interactive addition and multiplication lookup tables",
+            "Study module with step-by-step algorithms and engineering pros/cons",
+            "Interactive quiz/practice mode with multi-level difficulty",
+            "Client-side zero-latency internationalization across 8 languages"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://base6.art/#website",
+          "url": "https://base6.art/",
+          "name": "Bijective Base-6 Calculator & Explorer",
+          "description": "Interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero.",
+          "inLanguage": ["en", "ru", "de", "fr", "he", "ar", "zh", "ja"],
+          "publisher": {
+            "@type": "Person",
+            "name": "tripping-alien",
+            "url": "https://github.com/tripping-alien"
+          }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://base6.art/#sourcecode",
+          "name": "Bijective Base-6 Calculator Source Code",
+          "codeRepository": "https://github.com/tripping-alien/bijective_base6_calc",
+          "programmingLanguage": "JavaScript",
+          "runtimePlatform": "Web Browser",
+          "license": "https://opensource.org/licenses/MIT"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://base6.art/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Bijective base-6 is a non-standard positional numeral system using base 6 and the six non-zero digits 1, 2, 3, 4, 5, and 6. Unlike standard senary (base-6) which uses digits 0 through 5, bijective base-6 has no zero digit, meaning every positive integer has a single unique representation without leading-zero ambiguity."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do you count from 1 to 10 in bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Counting begins 1, 2, 3, 4, 5, 6. The next number (decimal 7) rolls over to 11 (1×6¹ + 1×6⁰ = 7). Decimal 8 is 12, decimal 9 is 13, and decimal 10 is 14."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is there no zero in bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In bijective numeration with base k, the digits are 1 through k instead of 0 through k-1. Eliminating zero creates an exact 1-to-1 bijection between positive integers and finite strings of digits. This is identical to how spreadsheet column titles work (A–Z, AA–AZ, etc.)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do you convert decimal to bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "To convert a positive decimal integer n to bijective base-6: repeatedly divide (n - 1) by 6. The remainder plus 1 produces the digit (from 1 to 6) from right to left, and the integer quotient becomes the new n until n reaches 0."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does bijective base-6 addition work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Addition is performed column by column from right to left. When the sum of column digits plus carry exceeds 6, the resulting digit is ((sum - 1) % 6) + 1, and the carry to the next column is floor((sum - 1) / 6)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7/css/flag-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +208,7 @@
         </svg>
     </button>
 
-    <div class="container my-4">
+    <main class="container my-4">
         <!-- Brand Header -->
         <header class="text-center brand-header">
             <div class="brand-badge">
@@ -386,7 +543,7 @@
                     rel="noopener">MIT License</a>.
             </p>
         </footer>
-    </div>
+    </main>
 
     <!-- Settings Modal -->
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">

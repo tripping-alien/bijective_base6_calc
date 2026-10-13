@@ -66,6 +66,12 @@ def sitemap():
             return Response(content=f.read(), media_type="application/xml")
     return Response(content="<urlset></urlset>", media_type="application/xml")
 
+@app.get("/site.webmanifest")
+def webmanifest():
+    if os.path.exists("site.webmanifest"):
+        return FileResponse("site.webmanifest", media_type="application/manifest+json")
+    raise HTTPException(status_code=404, detail="Manifest not found")
+
 @app.get("/locales/{lang}.json")
 async def get_locale(lang: str):
     if not lang.replace("-", "").isalnum():

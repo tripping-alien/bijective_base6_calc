@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use or reference this software, please cite it using the metadata below."
+title: "Bijective Base-6 Calculator & Explorer"
+abstract: "An interactive educational calculator and explorer for the bijective base-6 (senary) numeral system with no zero (digits 1-6)."
+authors:
+  - name: "tripping-alien"
+    website: "https://github.com/tripping-alien"
+repository-code: "https://github.com/tripping-alien/bijective_base6_calc"
+url: "https://base6.art"
+keywords:
+  - "bijective-numeration"
+  - "base-6"
+  - "senary"
+  - "calculator"
+  - "number-systems"
+  - "mathematics-education"
+license: "MIT"
+version: "1.0.0"
+date-released: "2026-10-13"

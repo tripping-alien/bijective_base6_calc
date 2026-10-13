@@ -1,121 +1,279 @@
-# Bijective Base-6 Calculator & Explorer
+# 🧮 Bijective Base-6 Calculator & Explorer
 
-[![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://tripping-alien.github.io/bijective_base6_calc/)
-[![Live Demo](https://img.shields.io/badge/Custom_Domain-base6.art-6366f1?style=for-the-badge)](https://base6.art)
-[![Architecture](https://img.shields.io/badge/Architecture-100%25_Client--Side-blue?style=flat-square)](https://github.com/tripping-alien/bijective_base6_calc)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-base6.art-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://base6.art)
+[![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://tripping-alien.github.io/bijective_base6_calc/)
+[![CI Test Suite](https://img.shields.io/github/actions/workflow/status/tripping-alien/bijective_base6_calc/ci.yml?branch=main&style=for-the-badge&label=CI%20Build)](https://github.com/tripping-alien/bijective_base6_calc/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0%20(Pure%20Vanilla%20JS)-success?style=flat-square)](static/script.js)
+[![Languages](https://img.shields.io/badge/i18n-8%20Languages-blue?style=flat-square)](locales/)
 
-An interactive web application for exploring the **bijective base-6 number system**—a positional numeral system with **no zero**, using digits `1, 2, 3, 4, 5, 6`. Designed for engineers, students, and math enthusiasts, this zero-backend educational tool features an interactive calculator, a real-time number system converter, comprehensive algorithmic explanations, reference lookup tables, and a configurable practice mode with full internationalization across **8 languages**.
+An interactive web application and educational explorer for the **bijective base-6 numeral system**—a non-standard positional number system with **no zero**, using digits `1, 2, 3, 4, 5, 6`. Designed for software engineers, mathematicians, educators, and computer science students, this client-side educational suite combines real-time radix conversion, arbitrary-precision bijective arithmetic, automated practice quizzes, lookup tables, and an algorithmic study guide.
+
+Available live with custom domain routing at **[https://base6.art](https://base6.art)**.
 
 ---
 
-![Application Screenshot](assets/screenshot.jpg)
+![Bijective Base-6 Calculator Application Screenshot](assets/screenshot.jpg)
 
 ---
 
-## Table of Contents
+## 📑 Table of Contents
 
+- [Overview & Key Concepts](#-what-is-bijective-base-6)
+- [Comparison: Decimal vs Senary vs Bijective Base-6](#-quick-reference-comparison-table)
 - [Features](#-features)
-- [What is Bijective Base-6?](#-what-is-bijective-base-6)
+- [Mathematical Algorithms & Implementation](#-mathematical-algorithms)
+  - [Decimal to Bijective Base-6](#1-decimal-to-bijective-base-6)
+  - [Bijective Base-6 to Decimal](#2-bijective-base-6-to-decimal)
+  - [Bijective Column Addition](#3-bijective-column-addition)
+  - [Bijective Column Subtraction](#4-bijective-column-subtraction)
+- [Internationalization (i18n)](#-internationalization-8-languages)
 - [Tech Stack & Architecture](#-tech-stack--architecture)
-- [Hosting on GitHub Pages](#-hosting-on-github-pages)
-- [Running Locally](#-running-locally)
-- [Contributing](#-contributing)
+- [Deployment on GitHub Pages](#-hosting-on-github-pages)
+- [Running Locally & Testing](#-running-locally)
+- [Frequently Asked Questions (FAQ)](#-frequently-asked-questions)
+- [Community & Contributing](#-contributing)
+- [Citation](#-citation)
 - [License](#-license)
-
----
-
-## ✨ Features
-
-- **Live Conversion Explorer**: Instantly see any decimal number represented in Decimal, Binary, Hexadecimal, and Bijective Base-6.
-- **Bijective Calculator**: Perform addition, subtraction, multiplication, and division directly with bijective base-6 numbers.
-- **Educational Content**: A dedicated "Study" tab tailored for engineers, explaining the practical pros and cons and teaching the algorithms for manual calculation.
-- **Configurable Practice Mode**: Test your skills with math or conversion problems across Easy, Medium, and Hard difficulty levels.
-- **Reference Tables**: View pre-calculated 24x24 Addition and Multiplication tables to easily see patterns.
-- **Polished UI**: A clean, responsive, dual-theme interface that's easy on the eyes.
 
 ---
 
 ## 💡 What is Bijective Base-6?
 
-This application is an educational tool for exploring **bijective base-6 numeration**. Unlike standard number systems, it has two key properties:
+**Bijective base-6** (also known as *1-based senary* or *zero-free base-6*) is a positional numeral system that uses the base $k = 6$ and the digit set:
 
-1.  **No Zero**: The digits are `1, 2, 3, 4, 5, 6`.
-2.  **Bijective**: Every positive integer has one, and only one, unique string representation (e.g., `7` is always `11`, never `011`).
+$$\mathcal{D} = \{1, 2, 3, 4, 5, 6\}$$
 
-Counting proceeds like an odometer that can't show zero. After `6`, the next number "rolls over" to `11`. This property makes it incredibly useful in computer science for creating compact, unambiguous identifiers.
+Unlike conventional number systems (such as decimal $0\dots9$ or standard senary $0\dots5$), bijective base-6 has **no zero digit**:
+
+1. **No Zero Representation**: Every position in a number represents a strictly non-zero value between $1$ and $6$.
+2. **True Bijection ($1 \leftrightarrow 1$)**: There is an exact 1-to-1 bijection between all positive integers $\mathbb{N}^+$ and non-empty digit strings over $\{1, 2, 3, 4, 5, 6\}^*$.
+3. **No Leading Zero Ambiguities**: In standard base-6, $5$, $05$, and $005$ are identical numerical values, creating identifier parsing ambiguities. In bijective base-6, every representation is strictly unique.
+
+Counting proceeds like an odometer that cannot display zero:
+
+$$1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 5 \rightarrow 6 \rightarrow 11 \rightarrow 12 \dots 16 \rightarrow 21 \dots 66 \rightarrow 111$$
+
+This mechanism is identical to the way **spreadsheet columns** (such as Excel or Google Sheets) are labeled using letters: $A\dots Z$, then $AA\dots AZ$, rollover to $BA$, through $ZZ$, then $AAA$.
+
+---
+
+## 📊 Quick Reference Comparison Table
+
+| Decimal (Base 10) | Standard Senary (Base 6, digits 0–5) | Bijective Base-6 (Base 6, digits 1–6) | Mathematical Interpretation |
+| :---: | :---: | :---: | :--- |
+| **1** | `1` | `1` | $1 \times 6^0 = 1$ |
+| **5** | `5` | `5` | $5 \times 6^0 = 5$ |
+| **6** | `10` | `6` | $6 \times 6^0 = 6$ *(No rollover needed!)* |
+| **7** | `11` | `11` | $1 \times 6^1 + 1 \times 6^0 = 6 + 1 = 7$ |
+| **12** | `20` | `16` | $1 \times 6^1 + 6 \times 6^0 = 6 + 6 = 12$ |
+| **35** | `55` | `55` | $5 \times 6^1 + 5 \times 6^0 = 30 + 5 = 35$ |
+| **36** | `100` | `56` | $5 \times 6^1 + 6 \times 6^0 = 30 + 6 = 36$ |
+| **42** | `110` | `66` | $6 \times 6^1 + 6 \times 6^0 = 36 + 6 = 42$ |
+| **43** | `111` | `111` | $1 \times 6^2 + 1 \times 6^1 + 1 \times 6^0 = 36 + 6 + 1 = 43$ |
+| **216** | `1000` | `556` | $5 \times 6^2 + 5 \times 6^1 + 6 \times 6^0 = 180 + 30 + 6 = 216$ |
+| **258** | `1110` | `666` | $6 \times 6^2 + 6 \times 6^1 + 6 \times 6^0 = 216 + 36 + 6 = 258$ |
+| **259** | `1111` | `1111` | $1 \times 6^3 + 1 \times 6^2 + 1 \times 6^1 + 1 \times 6^0 = 259$ |
+
+---
+
+## ✨ Features
+
+- **⚡ Real-Time Radix Converter**: Dynamically convert any positive integer between Decimal, Binary, Hexadecimal, Standard Base-6, and Bijective Base-6 with preset quick-chips.
+- **➕ Bijective Arithmetic Engine**: Calculate addition ($+$), subtraction ($-$), multiplication ($\times$), and integer division ($\div$) directly on bijective base-6 numbers with interactive digit pads.
+- **📚 Interactive Study Guide**: Step-by-step algorithms, visual column-by-column carry/borrow breakdowns, and an analysis of engineering pros & cons.
+- **📋 24×24 Dynamic Reference Tables**: Pre-calculated lookup grids for bijective addition and multiplication to identify modular patterns and symmetries.
+- **🎯 Adaptive Practice Mode**: Test conversion and arithmetic skills across Easy, Medium, and Hard difficulty tiers with immediate interactive feedback.
+- **🌍 Instant Internationalization**: Native support for **8 languages** with RTL support and pre-bundled dictionary payloads (zero network latency).
+- **🌓 Dual-Theme Glassmorphic UI**: High-contrast Dark and Light modes with interactive mathematical particle background animations.
+
+---
+
+## 🧮 Mathematical Algorithms
+
+### 1. Decimal to Bijective Base-6
+
+To convert an integer $n \in \mathbb{N}^+$ to bijective base-6:
+
+```python
+def to_bijective_base6(n: int) -> str:
+    if n <= 0:
+        raise ValueError("Bijective base-6 represents strictly positive integers.")
+    digits = "123456"
+    result = ""
+    while n > 0:
+        rem = (n - 1) % 6
+        result = digits[rem] + result
+        n = (n - 1) // 6
+    return result
+```
+
+### 2. Bijective Base-6 to Decimal
+
+To evaluate a bijective digit string $d_k d_{k-1} \dots d_1 d_0$:
+
+$$n = \sum_{i=0}^{k} d_i \cdot 6^i$$
+
+```python
+def from_bijective_base6(s: str) -> int:
+    val = 0
+    for char in s:
+        digit = int(char)
+        if not (1 <= digit <= 6):
+            raise ValueError("Digits must be in range 1..6")
+        val = val * 6 + digit
+    return val
+```
+
+### 3. Bijective Column Addition
+
+When adding digits column-by-column with a carry:
+
+$$\text{digit} = ((d_1 + d_2 + \text{carry} - 1) \pmod 6) + 1$$
+
+$$\text{new\_carry} = \left\lfloor \frac{d_1 + d_2 + \text{carry} - 1}{6} \right\rfloor$$
+
+### 4. Bijective Column Subtraction
+
+When borrowing from an adjacent column in bijective base-6, you borrow a value of **6** (not 10). If digit $d_1 < d_2$, decrement the next column by 1 and compute $(d_1 + 6) - d_2$.
+
+---
+
+## 🌐 Internationalization (8 Languages)
+
+The application includes full native translations with RTL (Right-to-Left) script support:
+
+| Language | Code | Script Direction | Flag |
+| :--- | :---: | :---: | :---: |
+| **English** | `en` | LTR | 🇺🇸 |
+| **Русский** (Russian) | `ru` | LTR | 🇷🇺 |
+| **Deutsch** (German) | `de` | LTR | 🇩🇪 |
+| **Français** (French) | `fr` | LTR | 🇫🇷 |
+| **עברית** (Hebrew) | `he` | RTL | 🇮🇱 |
+| **العربية** (Arabic) | `ar` | RTL | 🇸🇦 |
+| **中文** (Simplified Chinese) | `zh` | LTR | 🇨🇳 |
+| **日本語** (Japanese) | `ja` | LTR | 🇯🇵 |
+
+Language can be switched in real-time via the settings modal or loaded directly using the URL query parameter (e.g. `https://base6.art/?lang=ru` or `https://base6.art/?lang=de`).
 
 ---
 
 ## 🛠️ Tech Stack & Architecture
 
-| Technology | Purpose |
-| :--- | :--- |
-| **HTML5 & Vanilla CSS3** | Clean, semantic structure with a custom glassmorphic design system and fluid responsiveness. |
-| **Vanilla JavaScript (ES6+)** | 100% client-side computation for all bijective arithmetic, conversions, reference table generation, and practice mode. |
-| **Zero Backend Required** | Operates entirely in the browser—deployable to GitHub Pages, Cloudflare, Netlify, or opened directly as `index.html`. |
-| **Pre-Bundled i18n Engine** | Instant language switching across 8 languages with zero network latency (`static/locales-data.js`). |
-| **Python / FastAPI (Optional)** | Included in `app.py` as an optional local dev server and API suite with automated `pytest` verification. |
+- **Core**: HTML5, Vanilla CSS3, Vanilla ES6+ JavaScript.
+- **Zero External Dependencies**: Operates 100% offline and client-side; no Node runtime or heavy framework bundle required.
+- **FastAPI Companion Backend**: Included in `app.py` for headless unit testing, endpoint benchmarking, and optional containerized hosting.
+- **Automated Testing Suite**:
+  - `static/script.test.js`: 1,012 client-side unit test assertions verifying bijective arithmetic and conversion edge cases.
+  - `test_app.py`: Pytest suite verifying server endpoints and algorithmic parity.
+
+---
 
 ## 🌐 Hosting on GitHub Pages
 
-This repository is pre-configured for seamless deployment to **GitHub Pages**:
+This repository is pre-configured for automated deployment to **GitHub Pages**:
 
-1. **Automatic Deployment (Recommended)**:
-   - A GitHub Actions workflow is included at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-   - In your GitHub repository, navigate to **Settings > Pages**.
-   - Under **Build and deployment > Source**, choose **GitHub Actions**.
-   - Every push to the `main` branch will automatically deploy the site.
-
-2. **Branch Deployment (Alternative)**:
-   - In **Settings > Pages**, set **Source** to `Deploy from a branch`.
-   - Select branch `main` and folder `/ (root)`.
-   - The `.nojekyll` file in the root ensures all static assets, styles, and locales are served directly without Jekyll filtering.
+1. In repository settings, navigate to **Settings > Pages**.
+2. Under **Build and deployment > Source**, select **GitHub Actions**.
+3. Pushes to `main` automatically trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) to deploy to [base6.art](https://base6.art).
+4. The root [`CNAME`](CNAME) and [`.nojekyll`](.nojekyll) files ensure HTTPS custom domain routing and unconstrained static file delivery.
 
 ---
 
 ## 🚀 Running Locally
 
 ### Option 1: Direct In-Browser (Zero Installation)
-Simply double-click `index.html` in your file explorer, or serve it with any static web server:
+Simply open `index.html` in your web browser, or run a local static server:
 
-```sh
-# Using Python's built-in static server:
+```bash
+# Using Python:
 python -m http.server 8000
 
-# Or using Node's npx serve:
+# Or using Node:
 npx serve .
 ```
-Then open `http://localhost:8000` in your web browser.
+Navigate to `http://localhost:8000`.
 
-### Option 2: Using the Optional FastAPI Server
+### Option 2: Using the Optional FastAPI Dev Server
 
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/tripping-alien/bijective_base6_calc.git
-   cd bijective_base6_calc
-   ```
-2. **Install requirements & run:**
-   ```sh
-   pip install -r requirements.txt
-   uvicorn app:app --reload
-   ```
-3. Open `http://127.0.0.1:8000`.
+```bash
+# Clone the repository
+git clone https://github.com/tripping-alien/bijective_base6_calc.git
+cd bijective_base6_calc
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start development server
+uvicorn app:app --reload --port 8000
+```
+
+### Running Test Suites
+
+```bash
+# Run 1,000+ client-side JS unit tests
+node static/script.test.js
+
+# Run Python API tests
+pytest
+```
+
+---
+
+## ❓ Frequently Asked Questions
+
+<details>
+<summary><strong>Why is there no zero in bijective base-6?</strong></summary>
+
+In standard positional numeral systems with radix $k$, digits range from $0$ to $k-1$. In a bijective base-$k$ system, digits range from $1$ to $k$. By shifting the digit set away from zero, every positive integer maps to exactly one string without redundant leading zeros (e.g., $7$ is solely represented by $11$, never $011$).
+</details>
+
+<details>
+<summary><strong>What happens when an odometer rolls over in bijective base-6?</strong></summary>
+
+In decimal, after $9$ comes $10$. In standard base-6, after $5$ comes $10$. In bijective base-6, after $5$ comes $6$ (a single digit!). The rollover only happens after $6$, producing $11$.
+</details>
+
+<details>
+<summary><strong>Where are bijective number systems used in practice?</strong></summary>
+
+The most famous real-world application of bijective numeration is **spreadsheet column naming** (bijective base-26 with digits `A` through `Z`). Other applications include bijective base-64 URL shorteners, unambiguous database primary keys, and algorithmic serializations where leading zeroes cause silent truncation errors.
+</details>
+
+<details>
+<summary><strong>Can bijective base-6 represent negative numbers or zero?</strong></summary>
+
+Pure bijective numeration is defined over positive integers $\mathbb{N}^+ = \{1, 2, 3, \dots\}$. Zero can be denoted as an empty string $\epsilon$ or handled with an explicit sign token, and negative integers are indicated by a unary minus sign (e.g., $-14$).
+</details>
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+Contributions, bug reports, and translation improvements are welcome!
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+1. Check existing issues or open a new [Bug Report](.github/ISSUE_TEMPLATE/bug_report.md) or [Feature Request](.github/ISSUE_TEMPLATE/feature_request.md).
+2. Review our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
+3. Fork the repository, create your branch (`git checkout -b feature/my-feature`), commit changes, and submit a Pull Request.
+
+---
+
+## 📜 Citation
+
+If you use or reference this project in academic research, educational material, or software documentation, please cite it using [`CITATION.cff`](CITATION.cff):
+
+```bibtex
+@software{bijective_base6_calc,
+  author = {tripping-alien},
+  title = {Bijective Base-6 Calculator & Explorer},
+  url = {https://base6.art},
+  year = {2026},
+  note = {GitHub Repository: https://github.com/tripping-alien/bijective_base6_calc}
+}
+```
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the [MIT License](LICENSE).

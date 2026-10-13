@@ -1,45 +1,214 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Primary SEO Meta Tags -->
     <title data-i18n="pageTitle">Bijective Base-6 Calculator & Explorer</title>
-    <meta name="description" content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero." data-i18n-content="pageDescription">
-    <meta name="keywords" content="bijective base-6, base 6, senary, bijective numeration, number system, no zero, calculator, converter, educational tool, math">
-    
+    <meta name="title" content="Bijective Base-6 Calculator & Explorer">
+    <meta name="description"
+        content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero."
+        data-i18n-content="pageDescription">
+    <meta name="keywords"
+        content="bijective base-6, base 6, senary, bijective numeration, number system, no zero, calculator, converter, educational tool, math, decimal to base 6, positional notation">
+    <meta name="author" content="tripping-alien">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
     <link rel="canonical" href="https://base6.art/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+
+    <!-- Multilingual Hreflang Alternates (8 Languages + x-default) -->
+    <link rel="alternate" hreflang="x-default" href="https://base6.art/">
+    <link rel="alternate" hreflang="en" href="https://base6.art/">
+    <link rel="alternate" hreflang="ru" href="https://base6.art/?lang=ru">
+    <link rel="alternate" hreflang="de" href="https://base6.art/?lang=de">
+    <link rel="alternate" hreflang="fr" href="https://base6.art/?lang=fr">
+    <link rel="alternate" hreflang="he" href="https://base6.art/?lang=he">
+    <link rel="alternate" hreflang="ar" href="https://base6.art/?lang=ar">
+    <link rel="alternate" hreflang="zh" href="https://base6.art/?lang=zh">
+    <link rel="alternate" hreflang="ja" href="https://base6.art/?lang=ja">
+
+    <!-- Mobile & PWA Optimization -->
+    <meta name="application-name" content="Bijective Base-6 Calculator">
+    <meta name="apple-mobile-web-app-title" content="Base-6 Calc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+    <link rel="apple-touch-icon" href="https://base6.art/assets/screenshot.jpg">
 
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://base6.art/">
+    <meta property="og:site_name" content="Bijective Base-6 Calculator & Explorer">
     <meta property="og:title" content="Bijective Base-6 Calculator & Explorer" data-i18n-property="og:title">
-    <meta property="og:description" content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero." data-i18n-property="og:description">
-    <meta property="og:image" content="assets/screenshot.jpg">
+    <meta property="og:description"
+        content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero."
+        data-i18n-property="og:description">
+    <meta property="og:image" content="https://base6.art/assets/screenshot.jpg">
+    <meta property="og:image:secure_url" content="https://base6.art/assets/screenshot.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1032">
+    <meta property="og:image:alt" content="Bijective Base-6 Calculator and Explorer live application preview">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="he_IL">
+    <meta property="og:locale:alternate" content="ar_SA">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="ja_JP">
 
+    <!-- Twitter Cards -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://base6.art/">
     <meta property="twitter:title" content="Bijective Base-6 Calculator & Explorer" data-i18n-property="twitter:title">
-    <meta property="twitter:description" content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero." data-i18n-property="twitter:description">
-    <meta property="twitter:image" content="assets/screenshot.jpg">
+    <meta property="twitter:description"
+        content="An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero."
+        data-i18n-property="twitter:description">
+    <meta property="twitter:image" content="https://base6.art/assets/screenshot.jpg">
+    <meta property="twitter:image:alt" content="Bijective Base-6 Calculator and Explorer live application preview">
+
+    <!-- Search Engine Verifications -->
+    <meta name="google-site-verification" content="Ulb9B2JDIPiWP4AE8p7vIGN-XJmKCsXVTb1HmCFKj2U">
+
+    <!-- Performance Preconnect Hints -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Schema.org Structured Data (JSON-LD) for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://base6.art/#webapp",
+          "name": "Bijective Base-6 Calculator & Explorer",
+          "url": "https://base6.art/",
+          "description": "An interactive educational tool and mathematical calculator to explore the bijective base-6 (senary) number system with no zero, using digits 1-6.",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "tripping-alien",
+            "url": "https://github.com/tripping-alien"
+          },
+          "image": "https://base6.art/assets/screenshot.jpg",
+          "screenshot": "https://base6.art/assets/screenshot.jpg",
+          "inLanguage": ["en", "ru", "de", "fr", "he", "ar", "zh", "ja"],
+          "featureList": [
+            "Bijective base-6 arithmetic (+, -, ×, ÷)",
+            "Real-time decimal to bijective senary converter",
+            "24x24 interactive addition and multiplication lookup tables",
+            "Study module with step-by-step algorithms and engineering pros/cons",
+            "Interactive quiz/practice mode with multi-level difficulty",
+            "Client-side zero-latency internationalization across 8 languages"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://base6.art/#website",
+          "url": "https://base6.art/",
+          "name": "Bijective Base-6 Calculator & Explorer",
+          "description": "Interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero.",
+          "inLanguage": ["en", "ru", "de", "fr", "he", "ar", "zh", "ja"],
+          "publisher": {
+            "@type": "Person",
+            "name": "tripping-alien",
+            "url": "https://github.com/tripping-alien"
+          }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://base6.art/#sourcecode",
+          "name": "Bijective Base-6 Calculator Source Code",
+          "codeRepository": "https://github.com/tripping-alien/bijective_base6_calc",
+          "programmingLanguage": "JavaScript",
+          "runtimePlatform": "Web Browser",
+          "license": "https://opensource.org/licenses/MIT"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://base6.art/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Bijective base-6 is a non-standard positional numeral system using base 6 and the six non-zero digits 1, 2, 3, 4, 5, and 6. Unlike standard senary (base-6) which uses digits 0 through 5, bijective base-6 has no zero digit, meaning every positive integer has a single unique representation without leading-zero ambiguity."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do you count from 1 to 10 in bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Counting begins 1, 2, 3, 4, 5, 6. The next number (decimal 7) rolls over to 11 (1×6¹ + 1×6⁰ = 7). Decimal 8 is 12, decimal 9 is 13, and decimal 10 is 14."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is there no zero in bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In bijective numeration with base k, the digits are 1 through k instead of 0 through k-1. Eliminating zero creates an exact 1-to-1 bijection between positive integers and finite strings of digits. This is identical to how spreadsheet column titles work (A–Z, AA–AZ, etc.)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do you convert decimal to bijective base-6?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "To convert a positive decimal integer n to bijective base-6: repeatedly divide (n - 1) by 6. The remainder plus 1 produces the digit (from 1 to 6) from right to left, and the integer quotient becomes the new n until n reaches 0."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does bijective base-6 addition work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Addition is performed column by column from right to left. When the sum of column digits plus carry exceeds 6, the resulting digit is ((sum - 1) % 6) + 1, and the carry to the next column is floor((sum - 1) / 6)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7/css/flag-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
 </head>
+
 <body>
     <canvas id="background-animation"></canvas>
 
     <!-- Settings Floating Action Button -->
-    <button id="settings-btn" class="settings-btn" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings" title="Settings">
+    <button id="settings-btn" class="settings-btn" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal"
+        aria-label="Settings" title="Settings">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311a1.464 1.464 0 0 1-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            <path
+                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311a1.464 1.464 0 0 1-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
         </svg>
     </button>
-    
-    <div class="container my-4">
+
+    <main class="container my-4">
         <!-- Brand Header -->
         <header class="text-center brand-header">
             <div class="brand-badge">
@@ -47,30 +216,36 @@
                 <span>Bijective Base-6 &bull; Digits {1, 2, 3, 4, 5, 6} &bull; No Zero</span>
             </div>
             <h1 class="brand-title" data-i18n="mainTitle">Bijective Base-6 Calculator & Explorer</h1>
-            <p class="brand-subtitle" data-i18n="pageDescription">An interactive educational tool to calculate and explore the bijective base-6 number system, which has no zero.</p>
+            <p class="brand-subtitle" data-i18n="pageDescription">An interactive educational tool to calculate and
+                explore the bijective base-6 number system, which has no zero.</p>
         </header>
 
         <!-- Navigation Tabs -->
         <div class="nav-tabs-container">
             <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="calculator-tab" data-bs-toggle="tab" data-bs-target="#tab-calculator" type="button" role="tab" data-i18n="tabCalculator">Calculator</button>
+                    <button class="nav-link active" id="calculator-tab" data-bs-toggle="tab"
+                        data-bs-target="#tab-calculator" type="button" role="tab"
+                        data-i18n="tabCalculator">Calculator</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="study-tab" data-bs-toggle="tab" data-bs-target="#tab-study" type="button" role="tab" data-i18n="tabStudy">Study</button>
+                    <button class="nav-link" id="study-tab" data-bs-toggle="tab" data-bs-target="#tab-study"
+                        type="button" role="tab" data-i18n="tabStudy">Study</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="tables-tab" data-bs-toggle="tab" data-bs-target="#tab-tables" type="button" role="tab" data-i18n="tabTables">Tables</button>
+                    <button class="nav-link" id="tables-tab" data-bs-toggle="tab" data-bs-target="#tab-tables"
+                        type="button" role="tab" data-i18n="tabTables">Tables</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="practice-tab" data-bs-toggle="tab" data-bs-target="#tab-practice" type="button" role="tab" data-i18n="tabPractice">Practice</button>
+                    <button class="nav-link" id="practice-tab" data-bs-toggle="tab" data-bs-target="#tab-practice"
+                        type="button" role="tab" data-i18n="tabPractice">Practice</button>
                 </li>
             </ul>
         </div>
 
         <!-- Tab Contents -->
         <div class="tab-content" id="myTabContent">
-            
+
             <!-- 1. CALCULATOR & CONVERTER TAB -->
             <div class="tab-pane fade show active p-4" id="tab-calculator" role="tabpanel">
                 <div class="row g-4">
@@ -78,11 +253,15 @@
                     <div class="col-lg-6">
                         <section class="card-panel">
                             <h2 data-i18n="liveConverterTitle">Live Conversion Explorer</h2>
-                            <p data-i18n="liveConverterDesc">Enter a decimal number to see its real-time representation across different systems.</p>
-                            
+                            <p data-i18n="liveConverterDesc">Enter a decimal number to see its real-time representation
+                                across different systems.</p>
+
                             <div class="mb-3">
-                                <label for="decimal-input" class="form-label" data-i18n="decimalInputLabel">Enter a Decimal Number:</label>
-                                <input type="number" min="1" class="form-control" id="decimal-input" placeholder="e.g., 43" data-i18n-placeholder="decimalInputPlaceholder" autocomplete="off">
+                                <label for="decimal-input" class="form-label" data-i18n="decimalInputLabel">Enter a
+                                    Decimal Number:</label>
+                                <input type="number" min="1" class="form-control" id="decimal-input"
+                                    placeholder="e.g., 43" data-i18n-placeholder="decimalInputPlaceholder"
+                                    autocomplete="off">
                             </div>
 
                             <!-- Preset Chips for Quick Exploration -->
@@ -105,16 +284,19 @@
                     <div class="col-lg-6">
                         <section class="card-panel">
                             <h2 data-i18n="calculatorTitle">Bijective Math Calculator</h2>
-                            <p data-i18n="calculatorDesc">Enter two bijective base-6 numbers to see the results for all operations.</p>
-                            
+                            <p data-i18n="calculatorDesc">Enter two bijective base-6 numbers to see the results for all
+                                operations.</p>
+
                             <div class="row g-2 mb-2">
                                 <div class="col-sm-6">
                                     <label for="num1" class="form-label">Number 1 (Base-6)</label>
-                                    <input type="text" class="form-control" id="num1" placeholder="First number" data-i18n-placeholder="num1Placeholder" autocomplete="off">
+                                    <input type="text" class="form-control" id="num1" placeholder="First number"
+                                        data-i18n-placeholder="num1Placeholder" autocomplete="off">
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="num2" class="form-label">Number 2 (Base-6)</label>
-                                    <input type="text" class="form-control" id="num2" placeholder="Second number" data-i18n-placeholder="num2Placeholder" autocomplete="off">
+                                    <input type="text" class="form-control" id="num2" placeholder="Second number"
+                                        data-i18n-placeholder="num2Placeholder" autocomplete="off">
                                 </div>
                             </div>
 
@@ -126,12 +308,15 @@
                                 <button type="button" class="keypad-btn" data-digit="4">4</button>
                                 <button type="button" class="keypad-btn" data-digit="5">5</button>
                                 <button type="button" class="keypad-btn" data-digit="6">6</button>
-                                <button type="button" class="keypad-btn action-btn" data-action="backspace" title="Backspace">⌫</button>
-                                <button type="button" class="keypad-btn action-btn" data-action="clear" title="Clear">C</button>
+                                <button type="button" class="keypad-btn action-btn" data-action="backspace"
+                                    title="Backspace">⌫</button>
+                                <button type="button" class="keypad-btn action-btn" data-action="clear"
+                                    title="Clear">C</button>
                             </div>
 
                             <div class="d-grid mt-auto pt-2">
-                                <button id="calculate-all-btn" class="btn btn-primary" data-i18n="calculateBtn">Calculate All Operations</button>
+                                <button id="calculate-all-btn" class="btn btn-primary"
+                                    data-i18n="calculateBtn">Calculate All Operations</button>
                             </div>
                         </section>
                     </div>
@@ -149,8 +334,10 @@
                 <!-- Pros & Cons -->
                 <section class="mb-5">
                     <h2 class="mb-2" data-i18n="prosConsTitle">Why Learn This System?</h2>
-                    <p class="text-muted mb-4" data-i18n="prosConsIntro">For an engineer, understanding alternative numeral systems like bijective base-6 offers practical advantages and deepens foundational knowledge.</p>
-                    
+                    <p class="text-muted mb-4" data-i18n="prosConsIntro">For an engineer, understanding alternative
+                        numeral systems like bijective base-6 offers practical advantages and deepens foundational
+                        knowledge.</p>
+
                     <div class="row g-4">
                         <div class="col-lg-6">
                             <div class="pros-cons-card pros">
@@ -241,21 +428,25 @@
                 <!-- Addition Algorithm -->
                 <section class="mb-5 study-card">
                     <h3 class="h4" data-i18n="studyAdditionTitle">How to Perform Addition</h3>
-                    <p data-i18n="studyAdditionDesc">Addition is performed column by column, from right to left. The key difference from decimal is how you handle carrying over when a sum exceeds 6.</p>
+                    <p data-i18n="studyAdditionDesc">Addition is performed column by column, from right to left. The key
+                        difference from decimal is how you handle carrying over when a sum exceeds 6.</p>
                     <div class="example-box" data-i18n-html="studyAdditionExample"></div>
                 </section>
 
                 <!-- Subtraction Algorithm -->
                 <section class="mb-5 study-card">
                     <h3 class="h4" data-i18n="studySubtractionTitle">How to Perform Subtraction</h3>
-                    <p data-i18n="studySubtractionDesc">Subtraction also works column by column. Borrowing is where it gets interesting: when you borrow from a column, you are borrowing a full 6, not 10.</p>
+                    <p data-i18n="studySubtractionDesc">Subtraction also works column by column. Borrowing is where it
+                        gets interesting: when you borrow from a column, you are borrowing a full 6, not 10.</p>
                     <div class="example-box" data-i18n-html="studySubtractionExample"></div>
                 </section>
 
                 <!-- Multiplication Algorithm -->
                 <section class="study-card">
                     <h3 class="h4" data-i18n="studyMultiplicationTitle">How to Perform Multiplication</h3>
-                    <p data-i18n="studyMultiplicationDesc">Multiplication follows the same long-multiplication algorithm as decimal, but it uses the bijective base-6 multiplication table. Each partial product is calculated and then summed using bijective addition rules.</p>
+                    <p data-i18n="studyMultiplicationDesc">Multiplication follows the same long-multiplication algorithm
+                        as decimal, but it uses the bijective base-6 multiplication table. Each partial product is
+                        calculated and then summed using bijective addition rules.</p>
                     <div class="example-box" data-i18n-html="studyMultiplicationExample"></div>
                 </section>
             </div>
@@ -265,13 +456,15 @@
                 <div class="table-toolbar">
                     <div class="table-size-selector">
                         <label for="table-size-select" class="form-label mb-0 me-2">Matrix Size:</label>
-                        <select id="table-size-select" class="form-select form-select-sm" style="width: auto; background: var(--input-bg-color); color: var(--text-color); border-color: var(--border-color);">
+                        <select id="table-size-select" class="form-select form-select-sm"
+                            style="width: auto; background: var(--input-bg-color); color: var(--text-color); border-color: var(--border-color);">
                             <option value="6">6 &times; 6 (Basics)</option>
                             <option value="12">12 &times; 12 (Intermediate)</option>
                             <option value="24" selected>24 &times; 24 (Comprehensive)</option>
                         </select>
                     </div>
-                    <div id="table-inspector-badge" class="table-inspector-badge">Hover over any cell to inspect calculation</div>
+                    <div id="table-inspector-badge" class="table-inspector-badge">Hover over any cell to inspect
+                        calculation</div>
                 </div>
 
                 <section class="mb-5">
@@ -290,34 +483,45 @@
                 <section id="quiz-section">
                     <div class="text-center mb-4">
                         <h2 class="h3" data-i18n="practiceTitle">Practice Mode</h2>
-                        <p class="text-muted" data-i18n="practiceDesc">Test your skills! Choose a difficulty and problem type.</p>
+                        <p class="text-muted" data-i18n="practiceDesc">Test your skills! Choose a difficulty and problem
+                            type.</p>
                     </div>
 
                     <!-- Difficulty Selectors -->
                     <div class="d-flex justify-content-center gap-3 mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="difficulty" id="difficulty-easy" value="easy" checked>
-                            <label class="form-check-label" for="difficulty-easy" data-i18n="difficultyEasy">Easy</label>
+                            <input class="form-check-input" type="radio" name="difficulty" id="difficulty-easy"
+                                value="easy" checked>
+                            <label class="form-check-label" for="difficulty-easy"
+                                data-i18n="difficultyEasy">Easy</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="difficulty" id="difficulty-medium" value="medium">
-                            <label class="form-check-label" for="difficulty-medium" data-i18n="difficultyMedium">Medium</label>
+                            <input class="form-check-input" type="radio" name="difficulty" id="difficulty-medium"
+                                value="medium">
+                            <label class="form-check-label" for="difficulty-medium"
+                                data-i18n="difficultyMedium">Medium</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="difficulty" id="difficulty-hard" value="hard">
-                            <label class="form-check-label" for="difficulty-hard" data-i18n="difficultyHard">Hard</label>
+                            <input class="form-check-input" type="radio" name="difficulty" id="difficulty-hard"
+                                value="hard">
+                            <label class="form-check-label" for="difficulty-hard"
+                                data-i18n="difficultyHard">Hard</label>
                         </div>
                     </div>
 
                     <!-- Question Types -->
                     <div class="d-flex justify-content-center gap-4 mb-4">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="quiz-type-conversions" checked>
-                            <label class="form-check-label" for="quiz-type-conversions" data-i18n="quizModeConversions">Conversions</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="quiz-type-conversions"
+                                checked>
+                            <label class="form-check-label" for="quiz-type-conversions"
+                                data-i18n="quizModeConversions">Conversions</label>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="quiz-type-arithmetic" checked>
-                            <label class="form-check-label" for="quiz-type-arithmetic" data-i18n="quizModeArithmetic">Arithmetic</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="quiz-type-arithmetic"
+                                checked>
+                            <label class="form-check-label" for="quiz-type-arithmetic"
+                                data-i18n="quizModeArithmetic">Arithmetic</label>
                         </div>
                     </div>
 
@@ -331,13 +535,15 @@
         <!-- Footer -->
         <footer class="text-center">
             <p class="mb-0">
-                <span data-i18n="githubLink">Project source available on</span> 
-                <a href="https://github.com/tripping-alien/bijective_base6_calc" target="_blank" rel="noopener">GitHub</a> &bull; 
-                <span data-i18n="licenseLink">Released under the</span> 
-                <a href="https://github.com/tripping-alien/bijective_base6_calc/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
+                <span data-i18n="githubLink">Project source available on</span>
+                <a href="https://github.com/tripping-alien/bijective_base6_calc" target="_blank"
+                    rel="noopener">GitHub</a> &bull;
+                <span data-i18n="licenseLink">Released under the</span>
+                <a href="https://github.com/tripping-alien/bijective_base6_calc/blob/main/LICENSE" target="_blank"
+                    rel="noopener">MIT License</a>.
             </p>
         </footer>
-    </div>
+    </main>
 
     <!-- Settings Modal -->
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
@@ -353,7 +559,8 @@
                         <label class="form-label d-block" data-i18n="themeLabel">Theme</label>
                         <div class="form-check form-switch fs-5">
                             <input class="form-check-input" type="checkbox" role="switch" id="theme-switch-modal">
-                            <label class="form-check-label fs-6" for="theme-switch-modal" id="theme-switch-label">Dark Mode</label>
+                            <label class="form-check-label fs-6" for="theme-switch-modal" id="theme-switch-label">Dark
+                                Mode</label>
                         </div>
                     </div>
                     <!-- Language Selection -->
@@ -372,4 +579,5 @@
     <script src="static/script.js"></script>
     <script src="static/animation.js" defer></script>
 </body>
+
 </html>
