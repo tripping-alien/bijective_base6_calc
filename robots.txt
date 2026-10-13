@@ -1,9 +1,11 @@
-# For all crawlers
+# Robots.txt for Bijective Base-6 Calculator & Explorer
+# https://base6.art/
+
 User-agent: *
-Disallow:
+Allow: /
 
-# Yandex-specific directive for the main mirror
-Host: https://base6.art
-
-# Sitemap location
+# Sitemap Index
 Sitemap: https://base6.art/sitemap.xml
+
+# Mirror host
+Host: https://base6.art
