@@ -7,15 +7,20 @@ from pydantic import BaseModel
 from starlette.responses import PlainTextResponse
 from datetime import date
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 app = FastAPI(title="Bijective Base-6 Calculator & Explorer")
 
-# Static assets mounts
-if os.path.exists("static"):
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-if os.path.exists("assets"):
-    app.mount("/assets", StaticFiles(directory="assets"), name="assets")
-if os.path.exists("locales"):
-    app.mount("/locales", StaticFiles(directory="locales"), name="locales")
+# Static assets mounts (resolved relative to BASE_DIR for directory independence)
+static_dir = os.path.join(BASE_DIR, "static")
+if os.path.exists(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
+assets_dir = os.path.join(BASE_DIR, "assets")
+if os.path.exists(assets_dir):
+    app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+locales_dir = os.path.join(BASE_DIR, "locales")
+if os.path.exists(locales_dir):
+    app.mount("/locales", StaticFiles(directory=locales_dir), name="locales")
 
 # Core Bijective Base-6 conversion logic
 def to_bijective_base6(n: int) -> str:
@@ -46,37 +51,42 @@ class CalculateRequest(BaseModel):
 
 @app.get("/")
 async def read_root():
-    if os.path.exists("index.html"):
-        return FileResponse("index.html")
-    elif os.path.exists("templates/index.html"):
-        return FileResponse("templates/index.html")
+    idx1 = os.path.join(BASE_DIR, "index.html")
+    idx2 = os.path.join(BASE_DIR, "templates", "index.html")
+    if os.path.exists(idx1):
+        return FileResponse(idx1)
+    elif os.path.exists(idx2):
+        return FileResponse(idx2)
     return HTMLResponse("<h1>Bijective Base-6 Calculator</h1>")
 
 @app.get("/robots.txt", response_class=PlainTextResponse)
 def robots():
-    if os.path.exists("robots.txt"):
-        with open("robots.txt", "r", encoding="utf-8") as f:
+    robots_path = os.path.join(BASE_DIR, "robots.txt")
+    if os.path.exists(robots_path):
+        with open(robots_path, "r", encoding="utf-8") as f:
             return f.read()
     return "# For all crawlers\nUser-agent: *\nDisallow:\n"
 
 @app.get("/sitemap.xml")
 def sitemap():
-    if os.path.exists("sitemap.xml"):
-        with open("sitemap.xml", "r", encoding="utf-8") as f:
+    sitemap_path = os.path.join(BASE_DIR, "sitemap.xml")
+    if os.path.exists(sitemap_path):
+        with open(sitemap_path, "r", encoding="utf-8") as f:
             return Response(content=f.read(), media_type="application/xml")
     return Response(content="<urlset></urlset>", media_type="application/xml")
 
 @app.get("/site.webmanifest")
 def webmanifest():
-    if os.path.exists("site.webmanifest"):
-        return FileResponse("site.webmanifest", media_type="application/manifest+json")
+    manifest_path = os.path.join(BASE_DIR, "site.webmanifest")
+    if os.path.exists(manifest_path):
+        return FileResponse(manifest_path, media_type="application/manifest+json")
     raise HTTPException(status_code=404, detail="Manifest not found")
 
 @app.get("/locales/{lang}.json")
 async def get_locale(lang: str):
     if not lang.replace("-", "").isalnum():
         raise HTTPException(status_code=400, detail="Invalid language format")
-    file_path = os.path.join("locales", f"{lang}.json")
+    file_path = os.path.join(BASE_DIR, "locales", f"{lang}.json")
     if os.path.exists(file_path):
         return FileResponse(file_path)
     raise HTTPException(status_code=404, detail="Language not found")
