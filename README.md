@@ -1,6 +1,7 @@
 # 🧮 Bijective Base-6 Calculator & Explorer
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://tripping-alien.github.io/bijective_base6_calc/)
+[![Studio](https://img.shields.io/badge/Studio-smalltalkapps.art-FFBE3B.svg)](https://smalltalkapps.art)
 [![CI Test Suite](https://img.shields.io/github/actions/workflow/status/tripping-alien/bijective_base6_calc/ci.yml?branch=main&style=for-the-badge&label=CI%20Build)](https://github.com/tripping-alien/bijective_base6_calc/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0%20(Pure%20Vanilla%20JS)-success?style=flat-square)](static/script.js)
