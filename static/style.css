@@ -102,7 +102,11 @@
 }
 
 html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
     overscroll-behavior-y: none;
+    overscroll-behavior: contain;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -112,8 +116,12 @@ body {
     color: var(--text-color);
     font-family: var(--font-sans);
     min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
-    padding: 0;
+    padding-top: max(env(safe-area-inset-top, 0px), 0px);
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 24px);
+    padding-left: max(env(safe-area-inset-left, 0px), 12px);
+    padding-right: max(env(safe-area-inset-right, 0px), 12px);
     overflow-x: hidden;
     line-height: 1.6;
 }
@@ -1072,5 +1080,35 @@ footer a:hover {
     
     .op-answer {
         font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-title {
+        font-size: 1.5rem;
+    }
+    .brand-subtitle {
+        font-size: 0.85rem;
+    }
+    .nav-tabs .nav-link {
+        padding: 0.5rem 0.55rem;
+        font-size: 0.78rem;
+    }
+    .card-panel {
+        padding: 1rem 0.75rem;
+        border-radius: var(--radius-md);
+    }
+    .calc-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    .card-panel {
+        padding: 2.25rem;
     }
 }
