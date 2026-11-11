@@ -1,4 +1,4 @@
-package com.smalltalkapps.base6calc;
+package net.smalltalkapps.bijectivebase6;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

@@ -1,7 +1,7 @@
 # Google Play Store Listing // Base-6 Calculator & Base6
 
 **Studio**: SmallTalk Apps (Est. 2014)  
-**Package Name**: `com.smalltalkapps.base6calc`  
+**Package Name**: `net.smalltalkapps.bijectivebase6`  
 **Target Canonical URL**: [https://tripping-alien.github.io/bijective_base6_calc/](https://tripping-alien.github.io/bijective_base6_calc/)  
 **Privacy Policy**: [https://smalltalkapps.net/privacy.html](https://smalltalkapps.net/privacy.html)  
 
