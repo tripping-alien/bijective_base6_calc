@@ -17,12 +17,12 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topToolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="36dp"
+            android:minHeight="36dp"
             android:background="#081a2e"
             app:title="Bijective Base6 Calculator"
-            app:titleTextColor="#FFFFFF"
-            app:subtitle="Balanced Base-6 Radix Converter"
-            app:subtitleTextColor="#38bdf8" />
+            app:titleCentered="true"
+            app:titleTextColor="#FFFFFF" />
 
         <ProgressBar
             android:id="@+id/progressBar"

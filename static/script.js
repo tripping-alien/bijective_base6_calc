@@ -324,6 +324,29 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => { if (hint) hint.remove(); }, 2500);
         }
 
+        // ─── Zero-Dependency Keypad Sound Engine ───
+        let audioCtx = null;
+        function getAudioCtx() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+        function playKeyClick(freq = 480) {
+            try {
+                const ctx = getAudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.055);
+            } catch (e) {}
+        }
+
         // Setup Virtual Keypad buttons
         document.querySelectorAll('.keypad-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -333,12 +356,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const action = btn.dataset.action;
 
                 if (digit) {
+                    playKeyClick(420 + parseInt(digit, 10) * 60);
                     target.value += digit;
                     target.dispatchEvent(new Event('input'));
                 } else if (action === 'backspace') {
+                    playKeyClick(300);
                     target.value = target.value.slice(0, -1);
                     target.dispatchEvent(new Event('input'));
                 } else if (action === 'clear') {
+                    playKeyClick(240);
                     target.value = '';
                     target.dispatchEvent(new Event('input'));
                 }
