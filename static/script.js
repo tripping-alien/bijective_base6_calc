@@ -513,8 +513,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (num2Input) num2Input.addEventListener('keydown', triggerCalculate);
         }
 
+        function escapeHtmlText(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         function displayAllOpsResults(num1, num2, data, n1, n2) {
             if (!opsResultsGrid) return;
+            const safeNum1 = escapeHtmlText(num1);
+            const safeNum2 = escapeHtmlText(num2);
             opsResultsGrid.innerHTML = Object.entries(data).map(([opName, res]) => {
                 let bijectiveResult;
                 let decimalDetail = '';
@@ -522,7 +533,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (opName === 'division') {
                     if (res.dec === null || res.dec === 0) {
                         bijectiveResult = '(N/A)';
-                        decimalDetail = `Decimal: ${n1} ÷ ${n2} = ${res.floatVal.toFixed(3)}`;
+                        decimalDetail = res.floatVal !== null
+                            ? `Decimal: ${n1} ÷ ${n2} = ${res.floatVal.toFixed(3)}`
+                            : `Decimal: ${n1} ÷ ${n2} = undefined`;
                     } else if (res.rem !== 0) {
                         const qBij = toBijective(res.dec);
                         const rBij = toBijective(res.rem);
@@ -551,10 +564,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return `
                     <div class="col">
                         <div class="op-result-item h-100">
-                            <div class="op-title">${opName}</div>
-                            <div class="op-problem">${num1} ${res.op} ${num2}</div>
+                            <div class="op-title">${escapeHtmlText(opName)}</div>
+                            <div class="op-problem">${safeNum1} ${escapeHtmlText(res.op)} ${safeNum2}</div>
                             <div class="op-answer">${bijectiveResult}</div>
-                            <div class="op-step">${decimalDetail}</div>
+                            <div class="op-step">${escapeHtmlText(decimalDetail)}</div>
                         </div>
                     </div>`;
             }).join('');
@@ -609,15 +622,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 let questionText = '';
                 let answer = '';
 
+                const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
                 if (type === 'conversion') {
                     const num = Math.floor(Math.random() * maxNum) + 1;
-                    questionText = (i18nData.quizQuestionConversion || "What is {number} in bijective base-6?").replace('{number}', `<code>${num}</code>`);
+                    questionText = esc(i18nData.quizQuestionConversion || "What is {number} in bijective base-6?").replace('{number}', `<code>${num}</code>`);
                     answer = toBijective(num);
                 } else {
                     const num1 = Math.floor(Math.random() * maxNum) + 1;
                     const num2 = Math.floor(Math.random() * maxNum) + 1;
                     const op = Math.random() > 0.5 ? '+' : '×';
-                    questionText = (i18nData.quizQuestionArithmetic || "What is {num1} {op} {num2}?")
+                    questionText = esc(i18nData.quizQuestionArithmetic || "What is {num1} {op} {num2}?")
                         .replace('{num1}', `<code>${toBijective(num1)}</code>`)
                         .replace('{op}', op)
                         .replace('{num2}', `<code>${toBijective(num2)}</code>`);
@@ -688,6 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 totalAnswered++;
 
+                const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
                 if (userAnswer === currentQuestion.answer) {
                     streak++;
                     totalCorrect++;
@@ -695,15 +710,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('quizCorrect', totalCorrect.toString());
                     localStorage.setItem('quizTotal', totalAnswered.toString());
 
-                    feedbackEl.innerHTML = `<div class="alert alert-success fs-5 py-2">${i18nData.quizCorrectFeedback || 'Correct! 🎉'}</div>`;
+                    feedbackEl.innerHTML = `<div class="alert alert-success fs-5 py-2">${esc(i18nData.quizCorrectFeedback || 'Correct! 🎉')}</div>`;
                     setTimeout(generateQuestion, 1200);
                 } else {
                     streak = 0;
                     localStorage.setItem('quizStreak', '0');
                     localStorage.setItem('quizTotal', totalAnswered.toString());
 
-                    const tmpl = i18nData.quizIncorrectFeedback || 'Not quite! The correct answer was {answer}.';
-                    feedbackEl.innerHTML = `<div class="alert alert-danger py-2">${tmpl.replace('{answer}', `<strong>${currentQuestion.answer}</strong>`)}</div>`;
+                    const tmpl = esc(i18nData.quizIncorrectFeedback || 'Not quite! The correct answer was {answer}.');
+                    feedbackEl.innerHTML = `<div class="alert alert-danger py-2">${tmpl.replace('{answer}', `<strong>${esc(currentQuestion.answer)}</strong>`)}</div>`;
                     setTimeout(generateQuestion, 2400);
                 }
             } catch (err) {
@@ -759,7 +774,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const langItem = document.createElement('a');
                 langItem.href = '#';
                 langItem.className = `list-group-item list-group-item-action language-option ${code === currentLang ? 'active' : ''}`;
-                langItem.innerHTML = `<span class="fi fi-${details.flag} me-2"></span> <span>${details.name}</span>`;
+                const flagSpan = document.createElement('span');
+                flagSpan.className = `fi fi-${String(details.flag || '').replace(/[^a-z0-9-]/gi, '')} me-2`;
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = String(details.name || code);
+                langItem.appendChild(flagSpan);
+                langItem.appendChild(document.createTextNode(' '));
+                langItem.appendChild(nameSpan);
                 langItem.addEventListener('click', (e) => {
                     e.preventDefault();
                     setLanguage(code).then(() => {

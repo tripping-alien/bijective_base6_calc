@@ -34,10 +34,11 @@ def to_bijective_base6(n: int) -> str:
     return "".join(reversed(result))
 
 def from_bijective_base6(s: str) -> int:
-    if not s or not all(c in "123456" for c in s.strip()):
-        raise ValueError("Invalid bijective base-6 input. Digits must be 1 to 6.")
+    cleaned = s.strip() if isinstance(s, str) else ""
+    if not cleaned or len(cleaned) > 64 or not all(c in "123456" for c in cleaned):
+        raise ValueError("Invalid bijective base-6 input. Digits must be 1 to 6 (max 64 digits).")
     n = 0
-    for c in s.strip():
+    for c in cleaned:
         n = n * 6 + int(c)
     return n
 
@@ -102,6 +103,8 @@ async def get_tables():
 @app.post("/convert")
 async def convert_endpoint(req: ConvertRequest):
     val = req.decimal_value
+    if val < 0 or val > 10**100:
+        raise HTTPException(status_code=400, detail="Decimal value out of supported bounds")
     return {
         "decimal": val,
         "bijective_base6": to_bijective_base6(val),
