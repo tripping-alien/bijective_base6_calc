@@ -120,12 +120,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Load initial page
+        // Load initial page (supporting deep links safely within HOST_DOMAIN)
         if (isNetworkAvailable()) {
-            mWebView.loadUrl(TARGET_URL);
+            mWebView.loadUrl(resolveDeepLinkUrl(getIntent()));
         } else {
             showOfflineScreen();
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        if (mWebView != null && isNetworkAvailable()) {
+            mWebView.loadUrl(resolveDeepLinkUrl(intent));
+        }
+    }
+
+    private String resolveDeepLinkUrl(Intent intent) {
+        if (intent == null || !Intent.ACTION_VIEW.equals(intent.getAction()) || intent.getData() == null) {
+            return TARGET_URL;
+        }
+        Uri data = intent.getData();
+        String scheme = data.getScheme();
+        String host = data.getHost();
+        if ("https".equalsIgnoreCase(scheme) && HOST_DOMAIN.equalsIgnoreCase(host)) {
+            String path = data.getPath();
+            if (path != null && path.startsWith("/bijective_base6_calc")) {
+                return data.toString();
+            }
+        }
+        if ("base6".equalsIgnoreCase(scheme) || ("smalltalk".equalsIgnoreCase(scheme) && "base6".equalsIgnoreCase(host))) {
+            String query = data.getEncodedQuery();
+            if (query != null && !query.isEmpty()) {
+                return TARGET_URL + "?" + query;
+            }
+        }
+        return TARGET_URL;
     }
 
     private boolean isNetworkAvailable() {
