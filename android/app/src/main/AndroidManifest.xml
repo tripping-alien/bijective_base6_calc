@@ -44,6 +44,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="tripping-alien.github.io" android:pathPrefix="/bijective_base6_calc" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="smalltalkapps.art" android:pathPrefix="/apps/base6" />
             </intent-filter>
         </activity>

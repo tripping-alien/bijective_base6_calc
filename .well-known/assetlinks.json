@@ -1,10 +1,13 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "net.smalltalkapps.base6",
       "sha256_cert_fingerprints": [
+        "A0:95:87:92:3B:1D:37:41:25:3F:0F:5B:0A:1A:ED:BD:6C:8B:1B:0E:20:94:91:39:AD:29:EA:66:3B:CB:9B:25",
         "57:F0:25:FE:58:87:48:45:92:46:09:E5:8D:DA:C0:36:FC:9D:97:A0:7C:3F:88:C0:90:7D:1D:2A:D5:A5:DE:81"
       ]
     }
