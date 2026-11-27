@@ -151,7 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (requestedTab) {
             const targetBtn = document.querySelector(`button[data-bs-target="#tab-${requestedTab}"]`);
             if (targetBtn) {
-                new bootstrap.Tab(targetBtn).show();
+                try {
+                    if (window.bootstrap && bootstrap.Tab) {
+                        new bootstrap.Tab(targetBtn).show();
+                    } else {
+                        targetBtn.click();
+                    }
+                } catch (err) {
+                    console.warn("Unable to activate tab from query param:", err);
+                }
                 return;
             }
         }

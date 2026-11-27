@@ -172,4 +172,26 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setVisibility(View.GONE);
         mOfflineLayout.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    protected void onPause() {
+        if (mWebView != null) mWebView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mWebView != null) mWebView.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mWebView != null) {
+            mWebView.stopLoading();
+            mWebView.destroy();
+            mWebView = null;
+        }
+        super.onDestroy();
+    }
 }
